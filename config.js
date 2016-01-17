@@ -10,7 +10,15 @@ System.config({
   paths: {
     "*": "dist/*",
     "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*"
+    "npm:*": "jspm_packages/npm/*",
+    "google-maps": "http://maps.googleapis.com/maps/api/js?"
+  },
+  
+  meta: {
+    "google-maps": {
+      "build": false, // exclude external Google Maps JS from SystemJS builder
+      "loader": "systemjs-googlemaps"
+    }
   },
 
   map: {
@@ -31,6 +39,7 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.5.0",
+    "systemjs-googlemaps": "github:HeinrichFilter/systemjs-plugin-googlemaps@master",
     "text": "github:systemjs/plugin-text@0.0.3",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
