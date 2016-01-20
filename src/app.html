@@ -14,7 +14,10 @@
     
     <div class="row">
       <div class="col-md-12">
-        <map></map>
+        <map center.bind="myCenter" zoom.bind="myZoom" bounds.bind="myBounds"></map>
+        <p>Center: ${myCenter}</p>
+        <p>Zoom: ${myZoom}</p>
+        <p>Bounds: ${myBounds}</p>
       </div>
     </div>
   </section>
