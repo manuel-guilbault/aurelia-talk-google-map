@@ -15,9 +15,14 @@
     <div class="row">
       <div class="col-md-12">
         <map center.bind="myCenter" zoom.bind="myZoom" bounds.bind="myBounds">
-          <marker position.bind="myPosition" title="Paris" draggable.one-time="true"></marker>
+          <marker position.bind="myPosition" title="Paris" draggable.one-time="true"
+                  click.call="isPositionSelected = !isPositionSelected">
+            <info-window visible.bind="isPositionSelected">
+              Welcome to Paris!
+            </info-window>
+          </marker>
         </map>
-        <p>Position: ${myPosition}</p>
+        <p>Position: ${myPosition}<span show.bind="isPositionSelected"> (selected)</span></p>
         <p>Center: ${myCenter}</p>
         <p>Zoom: ${myZoom}</p>
         <p>Bounds: ${myBounds}</p>

@@ -1,24 +1,27 @@
 import {
   inject,
-  noView,
+  inlineView,
   bindable, 
-  bindingMode
+  bindingMode,
+  Container
 } from 'aurelia-framework';
 import {Map, Marker} from 'google-maps';
 import {EventListeners} from './event-listeners';
 
-@noView
-@inject(Map)
+@inlineView('<template><content></content></template>')
+@inject(Map, Container)
 export class MarkerCustomElement {
   
   @bindable({ defaultBindingMode: bindingMode.twoWay }) position = null;
   @bindable title = '';
   @bindable draggable = false;
+  @bindable click = () => {};
   
-  constructor(map) {
+  constructor(map, container) {
     this.map = map;
     this.eventListeners = new EventListeners();
     this.marker = this._createMarker();
+    container.registerInstance(Marker, this.marker);
   }
   
   _createMarker() {
@@ -50,6 +53,9 @@ export class MarkerCustomElement {
     
     this.eventListeners.listen(this.marker, 'position_changed', () => {
       this.position = this.marker.getPosition();
+    });
+    this.eventListeners.listen(this.marker, 'click', () => {
+      this.click();
     });
   }
 
