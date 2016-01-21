@@ -18,7 +18,7 @@
           <marker position.bind="myPosition" title="Paris" draggable.one-time="true"
                   click.call="isPositionSelected = !isPositionSelected">
             <info-window visible.bind="isPositionSelected">
-              Welcome to Paris!
+              Your current position is ${myPosition}.
             </info-window>
           </marker>
         </map>
