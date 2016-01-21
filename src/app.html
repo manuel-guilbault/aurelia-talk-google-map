@@ -14,7 +14,10 @@
     
     <div class="row">
       <div class="col-md-12">
-        <map center.bind="myCenter" zoom.bind="myZoom" bounds.bind="myBounds"></map>
+        <map center.bind="myCenter" zoom.bind="myZoom" bounds.bind="myBounds">
+          <marker position.bind="myPosition" title="Paris" draggable.one-time="true"></marker>
+        </map>
+        <p>Position: ${myPosition}</p>
         <p>Center: ${myCenter}</p>
         <p>Zoom: ${myZoom}</p>
         <p>Bounds: ${myBounds}</p>
