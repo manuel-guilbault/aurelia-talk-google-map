@@ -1,8 +1,9 @@
 import {
   inject,
-  noView,
+  inlineView,
   bindable, 
-  bindingMode
+  bindingMode,
+  Container
 } from 'aurelia-framework';
 import {Map, LatLng} from 'google-maps';
 import {EventListeners} from './event-listeners';
@@ -16,18 +17,19 @@ function normalizeElement(element) {
   return element;
 }
 
-@noView
-@inject(Element)
+@inlineView('<template><content></content></template>')
+@inject(Element, Container)
 export class MapCustomElement {
   
   @bindable({ defaultBindingMode: bindingMode.twoWay }) center = new LatLng(0, 0);
   @bindable({ defaultBindingMode: bindingMode.twoWay }) bounds = null;
   @bindable({ defaultBindingMode: bindingMode.twoWay }) zoom = 10;
   
-  constructor(element) {
+  constructor(element, container) {
     this.element = normalizeElement(element);
     this.eventListeners = new EventListeners();
     this.map = this._createMap();
+    container.registerInstance(Map, this.map);
   }
   
   _createMap() {
